@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pierre Feuille Ciseaux</title>
+    <link rel="stylesheet" href="jeu.css">
+</head>
+<body>
+    <center><button class="button"><img src="rock.png" width="75" height="75"/></button>
+    <button class="button"><img src="paper.png" width="75" height="75"/></button>
+    <button class="button"><img src="scisorss.png" width="75" height="75"/></button>
+    <div class="resultat"></div></center>
+    <script>
+        const buttons = document.querySelectorAll('button');
+
+        for (let i = 0; i < buttons.length; i++) {
+            buttons[i].addEventListener('click', function() {
+                const robot = buttons[Math.floor(Math.random() * buttons.length)].
+                innerHTML;
+                const joueur = buttons[i].innerHTML;
+                let resultat = "";
+                if (joueur === robot) {
+                    resultat = "Egalité";
+                } else if ((joueur === "Pierre" && robot === "Ciseaux") || (joueur === "Feuille" && robot === "Pierre") || (joueur === "Ciseaux" && robot === "Feuille")) {
+                    resultat = "Vous avez gagné";
+                } else {
+                    resultat = "Vous avez Perdu";
+                }
+              
+                document.querySelector('.resultat').innerHTML = `
+                    <center>Joueur :  ${joueur} <br/>
+                    <center>Robot : ${robot} <br/>
+                    <br>
+                    ${resultat};
+                `;
+            });
+        }
+    </script>
+</body>
+</html>
